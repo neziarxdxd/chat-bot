@@ -1,21 +1,22 @@
+async function SayHi(context) {
+  await context.sendText('Hi!');
+}
+
+async function DefaultMessage(context) {
+  await context.sendText(`
+  Type what menu you want 
+  /wiki - Encyclopedia 
+  /word - Dictionary 
+  /tips - Tips for Programming 
+  /
+`);
+}
+
+
 module.exports = async function App(context) {
-  await context.sendButtonTemplate('What do you want to do next?', [
-    {
-      type: 'web_url',
-      url: 'https://petersapparel.parseapp.com',
-      title: 'Show Website',
-    },
-    {
-      type: 'postback',
-      title: 'Start Chatting',
-      payload: 'USER_DEFINED_PAYLOAD',
-    },
-  ]);
-  var text = context.event.text;
-  if (context.event.isText){
-    await context.sendText('TEXT testing'+text);
-    console.log(text);
-    //dfd
+  if (context.event.text == 'hi') {
+    return SayHi;
   }
-  
-};
+  return DefaultMessage;
+}
+
