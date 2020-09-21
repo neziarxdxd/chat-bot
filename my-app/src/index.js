@@ -1,22 +1,17 @@
-async function SayHi(context) {
-  await context.sendText('Hi!');
-}
+const { router, text, route } = require('bottender/router');
 
-async function DefaultMessage(context) {
-  await context.sendText(`
-  Type what menu you want 
-  /wiki - Encyclopedia 
-  /word - Dictionary 
-  /tips - Tips for Programming 
-  /
-`);
-}
 
+
+
+
+async function SearchWiki(context){
+  let stringSearch = context.event.text
+
+  await context.sendText("Hi "+stringSearch.slice(6))
+}
 
 module.exports = async function App(context) {
-  if (context.event.text == 'hi') {
-    return SayHi;
-  }
-  return DefaultMessage;
-}
-
+  return router([
+    text(/^\/wiki/,SearchWiki)
+  ]);
+};

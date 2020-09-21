@@ -1,5 +1,23 @@
 const fetch = require('node-fetch');
 
+function getPage(pageSearchID){
+    console.log("test");
+    let settings = { method: "Get" };
+    
+    let url = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&pageids=${pageSearchID}`
+    fetch(url, settings)
+        .then(res => res.json())
+        .then((json) => {
+            var summarypage =json["query"]["pages"][`${pageSearchID}`]["extract"];            
+            return(summarypage)     
+            
+    });
+
+}
+
+
+
+
 function getSummary(pageSearchID){
     console.log("test");
     let settings = { method: "Get" };
