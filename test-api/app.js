@@ -19,6 +19,7 @@ function getPage(pageSearchID){
 
 
 function getSummary(pageSearchID){
+    let dataX;
     console.log("test");
     let settings = { method: "Get" };
     
@@ -27,7 +28,7 @@ function getSummary(pageSearchID){
         .then(res => res.json())
         .then((json) => {
             var summarypage =json["query"]["pages"][`${pageSearchID}`]["extract"];            
-            console.log(summarypage)     
+            this.dataX=(summarypage)     
             
     });
 
