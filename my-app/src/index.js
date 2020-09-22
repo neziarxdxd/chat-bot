@@ -9,7 +9,7 @@ await function getSummary(pageSearchID){
       .then(res => res.json())
       .then((json) => {
           var summarypage =json["query"]["pages"][`${pageSearchID}`]["extract"];            
-          (summarypage)     
+          console.log(summarypage)     
           
   });
 
