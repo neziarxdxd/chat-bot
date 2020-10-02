@@ -12,7 +12,7 @@ async function SayHello(context) {
     var wikiID = Object.keys(json["query"]["pages"])[0]            
     var summarypage =json["query"]["pages"][wikiID]["extract"];   
     await context.sendText(summarypage.substring(0, 2000));
-    
+    // TODO: Create stuff
   })();
 
 
