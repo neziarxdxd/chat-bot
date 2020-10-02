@@ -4,28 +4,34 @@ async function SayHi(context) {
   await context.sendText('Hi!');
 }
 
-async function SayHello(context) {   
-  
+async function wikiSearch(context) {   
+  var searchWord = context.event.text;
+  var parseSearch = searchWord.slice(3).trim(); 
   (async() => {
-    const response = await fetch('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stackoverflow');
-    const json = await response.json();
+    var response = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${parseSearch}`);
+    var json = await response.json();
     var wikiID = Object.keys(json["query"]["pages"])[0]            
-    var summarypage =json["query"]["pages"][wikiID]["extract"];   
-    await context.sendText(summarypage.substring(0, 2000));
-    // TODO: Create stuff
+    var summarypage =json["query"]["pages"][wikiID]["extract"];  
+    var sentenceSummary = summarypage.split(". ")
+    sentenceSummary.map(
+      sentence=>{
+        context.sendText(sentence)
+      }
+    )
+    
+    
+    
   })();
 
 
 }
-async function wikiSearch(context) {
-  await context.sendText("Hi po");
 
-}
+  
+
 
 module.exports = async function App(context) {
-  return router([
-    
+  return router([    
     text('hi', SayHi),  
-    text('/^\/a/',wikiSearch),
+    text(/^\/a/,wikiSearch),
   ]);
 }
