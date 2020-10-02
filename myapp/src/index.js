@@ -17,12 +17,16 @@ async function SayHello(context) {
 
 
 }
+async function wikiSearch(context) {
+  await context.sendText("HELLOOOOOOOOOOO "+context.event.text);
+
+}
 
 module.exports = async function App() {
   return router([
-    // return the `SayHi` action when receiving "hi" text messages
+    
     text('hi', SayHi),
-    // return the `SayHello` action when receiving "hello" text messages
-    text('hello', SayHello),
+  
+    text('/^\/(?search\S+)$/i',wikiSearch),
   ]);
 }
