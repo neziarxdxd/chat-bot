@@ -15,7 +15,7 @@ async function wikiSearch(context) {
     var sentenceSummary = summarypage.split(". ")
     sentenceSummary.map(
       sentence=>{
-        context.sendText(sentence)
+        context.sendText("Test: "+sentence)
       }
     )
     
@@ -25,9 +25,6 @@ async function wikiSearch(context) {
 
 
 }
-
-  
-
 
 module.exports = async function App(context) {
   return router([    
