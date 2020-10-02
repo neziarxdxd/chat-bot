@@ -27,6 +27,6 @@ module.exports = async function App() {
     
     text('hi', SayHi),
   
-    text('/^\/(?search\S+)$/i',wikiSearch),
+    text('/^\/(?<search>\S+)$/i',wikiSearch),
   ]);
 }
