@@ -1,4 +1,4 @@
-const { router, text } = require('bottender/router');
+const { router, text,route } = require('bottender/router');
 const fetch = require('node-fetch');
 async function SayHi(context) {
   await context.sendText('Hi!');
@@ -18,15 +18,14 @@ async function SayHello(context) {
 
 }
 async function wikiSearch(context) {
-  await context.sendText("HELLOOOOOOOOOOO "+context.event.text);
+  await context.sendText("Hi po");
 
 }
 
-module.exports = async function App() {
+module.exports = async function App(context) {
   return router([
     
-    text('hi', SayHi),
-  
-    text('/^\/(?<search>\S+)$/i',wikiSearch),
+    text('hi', SayHi),  
+    text('/^\/a/',wikiSearch),
   ]);
 }
