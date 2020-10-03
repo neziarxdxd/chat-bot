@@ -6,7 +6,8 @@ async function SayHi(context) {
 
 async function wikiSearch(context) {   
   var searchWord = context.event.text;
-  var parseSearch = searchWord.slice(3).trim(); 
+  var  myString= searchWord.slice(3).trim();
+  var parseSearch = myString.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); 
   (async() => {
     var response = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${parseSearch}`);
     var json = await response.json();
@@ -24,18 +25,41 @@ async function wikiSearch(context) {
         var sentenceSummary = summarypage.split(". ")
         sentenceSummary.map(sentence=>{context.typing(100); context.sendText(sentence)});
       }
-    }
-    
+    } 
   
     
   })();
+}
+async function listOfTopics(context){
 
+  var searchWord = context.event.text;
+  var  myString= searchWord.slice(3).trim();
+  var searchQuery = myString.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
+  var search = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=5&srsearch=${searchQuery}`;
+  
+  (async() => {
+    var response = await fetch(search);
+    var json = await response.json();
+    
+    if (json.hasOwnProperty('error')){
+      context.sendText("Hi kindly add search in your command for example /l Programming ")
+    }
+    else{
+    
+      var searches =json["query"]["search"];
+      searches.map((search,index ) => {context.sendText(search.title+" /id "+search.pageid)});
+    } 
+  
+    
+  })();
+  
 
 }
 
 module.exports = async function App(context) {
   return router([    
     text('hi', SayHi),  
-    text(/^\/a/,wikiSearch),
+    text(/^\/w/,wikiSearch),
+    text(/^\/l/, listOfTopics)
   ]);
 }
