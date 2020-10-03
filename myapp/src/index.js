@@ -12,7 +12,7 @@ async function wikiSearch(context) {
     var json = await response.json();
     
     if (!(json.hasOwnProperty('query'))){
-      context.sendText("/a Fdfdkfdk")
+      context.sendText("Hi kindly add search in your command for example /a Programming ")
     }
     else{
     var wikiID = Object.keys(json["query"]["pages"])[0] 
