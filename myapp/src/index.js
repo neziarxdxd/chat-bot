@@ -10,18 +10,20 @@ async function wikiSearch(context) {
   (async() => {
     var response = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${parseSearch}`);
     var json = await response.json();
-    var wikiID = Object.keys(json["query"]["pages"])[0] 
-    if (wikiID ==-1){
-      context.sendText("No search results")
+    
+    if (!(json.hasOwnProperty('query'))){
+      context.sendText("/a Fdfdkfdk")
     }
     else{
-    var summarypage =json["query"]["pages"][wikiID]["extract"];  
-    var sentenceSummary = summarypage.split(". ")
-    sentenceSummary.map(
-      sentence=>{
-        context.sendText("Test: "+sentence)
+    var wikiID = Object.keys(json["query"]["pages"])[0] 
+      if (wikiID ==-1){
+        context.sendText("No result");
       }
-    );
+      else{
+        var summarypage =json["query"]["pages"][wikiID]["extract"];  
+        var sentenceSummary = summarypage.split(". ")
+        sentenceSummary.map(sentence=>{context.typing(100); context.sendText(sentence)});
+      }
     }
     
   
