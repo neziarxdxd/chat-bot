@@ -91,37 +91,36 @@ def checkIfYouWin():
   else:
     startDay()
   
-
 def endTheDay():
     global day,money,real_estate,gold,maintaining
     
     if (money <50_000):
       money = money + 5_000
-      print("You earned 5,000")
+      print("You earned 5,000","Total Money: ",money)
     if (money>=50_000):
       n =money*0.01
       rounded_up = (n + 9) // 10 * 10
       money = money + rounded_up
-      print("You earned",rounded_up )
+      print("You earned",rounded_up ,"Total Money: ",money)
     if (day%30 == 0 and real_estate>0):
       money = money + real_estate*100_000
-      print("You earned",real_estate*100_000)
+      print("You earned",real_estate*100_000,"Total Money: ",money)
     if (day%10 == 0 and gold>0):
       money = money + gold*10_000
-      print("You earned",gold*10_000)
+      print("You earned",gold*10_000,"Total Money: ",money)
     if (real_estate==1):
       money = money - 1_000
-      print("You've paid 1,000 for flat tax")  
+      print("You've paid 1,000 for flat tax","Total Money: ",money)  
     if (real_estate>1):
       money = money - (real_estate *2_000)
-      print("You've paid for",real_estate*2_000,"for the real estate tax")
+      print("You've paid for",real_estate*2_000,"for the real estate tax","Total Money: ",money)
     if (gold>=1):
       money = money - (gold*500)
     if (day%100 ==0):
       money = money/2
       rounded_up = (n + 9) // 10 * 10
       money = money - rounded_up
-      print("Catastrophic event you've lost your half of money")
+      print("Catastrophic event you've lost your half of money","Total Money: ",money)
     checkIfYouWin()
 
 def primeNumber(number):
@@ -131,13 +130,10 @@ def primeNumber(number):
       valid+=1
   return (valid==len(number))
 
-def startDay():
-  
+def startDay():  
   global day,money,real_estate,gold,maintaining,loans,loan_date,targetLoanPayment
   day+=1
-
   #loan date 
-
   if((loans>0) and ((day-loan_date)%3 == 0)):
     if(targetLoanPayment==3_000_000):
       print("Congratulations you've completed the loan payment")
@@ -160,30 +156,31 @@ def startDay():
   #end of the season
   if (day%60==0):
     money += 1_000
-    print("It's 60th day,  you earned 1,000")
+    print("It's 60th day,  you earned 1,000","Total Money: ",money)
   if (day%40==0 and real_estate >=1):
     money +=55_000
-    print("Hey it's 40th day, you earned 55,000 from your real estate")
+    print("Hey it's 40th day, you earned 55,000 from your real estate","Total Money: ",money)
   if (primeNumber(str(day))):
     money += 5_896
-    print("Yeeey it's prime number day you earn 5,896 ")
+    print("Yeeey it's prime number day you earn 5,896 ","Total Money: ",money)
 
   if (day%200==0):
     money = money * 2 
+    print("Double money ","Total Money: ",money)
 
   if (day%50==0 and real_estate>1):
     real_estate =real_estate- 1
-    print("It's 50th day one real estate removed")
+    print("It's 50th day one real estate removed","Total Money: ",money)
   if (day%13==0 and money >=50_000):
     money = money - 100
-    print("It's 13th day, your money is deducted to 100")
+    print("It's 13th day, your money is deducted to 100","Total Money: ",money)
   if (day%30==0 and gold>0):
     money = money + 5_000
-    print("You only earn 5,000 from your old bar")
+    print("You only earn 5,000 from your old bar","Total Money: ",money)
   if (day%90 ==0 and real_estate > 0):
     money = money + 40_000
-    print("You only earn 40,000 from your real estate")
-  gameMenu()
+    print("You only earn 40,000 from your real estate","Total Money: ",money)
+  
   
     
 def endDayTen():
@@ -206,7 +203,9 @@ def gameMenu():
     elif (maintaining > money):
       print("You Lose")
     else:
+      print("**************")
       print("Day",day)
+      print("**************")
       print("Bank Savings: ",money)
       print("Maintaining Balance: ",maintaining)
       print("Target Amount: ",target)
@@ -241,6 +240,8 @@ def gameMenu():
           if choice == "5": sellGold()
           if choice == "6": 
             endTheDay()
+            gameMenu()
+
             
           if choice == "7": endDayTen()            
     
