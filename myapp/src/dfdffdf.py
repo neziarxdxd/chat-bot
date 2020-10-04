@@ -166,7 +166,7 @@ def startDay():
     print("Hey it's 40th day, you earned 55,000 from your real estate")
   if (primeNumber(str(day))):
     money += 5_896
-    print("Yeeey it's prime numberday you earn 5,896 ")
+    print("Yeeey it's prime number day you earn 5,896 ")
 
   if (day%200==0):
     money = money * 2 
