@@ -121,6 +121,9 @@ def endTheDay():
       rounded_up = (n + 9) // 10 * 10
       money = money - rounded_up
       print("Catastrophic event you've lost your half of money","Total Money: ",money)
+    
+    #After the session it will check if you Win or Lose in the end of the day 
+    # win or lose the game will end and if not you'll go to starttheDay and start it again
     checkIfYouWin()
 
 def primeNumber(number):
@@ -136,7 +139,7 @@ def startDay():
   #loan date 
   if((loans>0) and ((day-loan_date)%3 == 0)):
     if(targetLoanPayment==3_000_000):
-      print("Congratulations you've completed the loan payment")
+      print("Congratulations you've completed the loan payment","Total Money: ",money)
       real_estate +=1
       loans = 0 #no more loans
       targetLoanPayment = 0 # no more target loan 
@@ -181,7 +184,8 @@ def startDay():
     money = money + 40_000
     print("You only earn 40,000 from your real estate","Total Money: ",money)
   
-  
+  # Removed The gameMenu here to stop stack recursion 
+  #end of the Start Day
     
 def endDayTen():
   endTheDay()
@@ -241,6 +245,7 @@ def gameMenu():
           if choice == "6": 
             endTheDay()
             gameMenu()
+            # TASK DONE: added gameMenu here
 
             
           if choice == "7": endDayTen()            
