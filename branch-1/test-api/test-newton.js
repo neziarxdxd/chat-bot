@@ -1,11 +1,11 @@
 const fetch = require('node-fetch');
-var operation = "factor";
+var operation = "zeroes";
 var expression = "x^2-25";
-var encodedUrl = encodeURI(expression);
-/**
-fetch(`https://newton.now.sh/api/v2/${operation}/${expression}`)
+var encodedUrl = encodeURIComponent(expression);
+
+
+fetch(`https://newton.now.sh/api/v2/${operation}/${encodedUrl}`)
     .then(res => res.json())
     .then(json => {
-        console.log(json.expression)
-        console.log(json.result)});
-**/
+        console.log(json)
+        });
