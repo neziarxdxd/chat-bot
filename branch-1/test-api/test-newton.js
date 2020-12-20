@@ -7,5 +7,5 @@ var encodedUrl = encodeURIComponent(expression);
 fetch(`https://newton.now.sh/api/v2/${operation}/${encodedUrl}`)
     .then(res => res.json())
     .then(json => {
-        console.log(json)
+        console.log(json.result)
         });
