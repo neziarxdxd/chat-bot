@@ -5,3 +5,18 @@ Page_token:EAAL17iMlql8BAA5mupYT71ixovU814oLZALBMXpwN0xQsWss4IDaEN6JNqzFYT01pXBQ
 verify_token: BASTA_APP_22
 
 bukas nalang
+
+async function factor(context){
+  var operation = "factor";
+  var expression = context.event.text;
+  var encodedUrl = encodeURIComponent(expression);
+  var equation =`https://newton.now.sh/api/v2/${operation}/${encodedUrl}`;
+  
+ 
+  (async() => {
+    var response = await fetch(equation);
+    var json = await response.json();
+    context.sendText((json.expression)+" "+json.result);
+       
+  })();
+}
