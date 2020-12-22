@@ -12,6 +12,9 @@ async function factor(context){
   (async ()={
    
     response = await fetch(equation)
+    json = await response.json()
+
+
 
 
   });
