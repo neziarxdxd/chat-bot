@@ -30,17 +30,7 @@ async function testProd(context){
   }
 }
 
-/**
- FACTOR FUNCTION
-async function factor(context){
-  var operation = "factor";
-  var len = operation.length + 2;
-  var equation = (context.event.text).slice(len);
-  testProd(context);
-  
-  //operationProd(context,operation,equation); 
-}
-**/
+
 
 module.exports = async function App(context) {
   return router(
