@@ -17,8 +17,10 @@ async function operationProd(context,opera,equat){
 }
 
 async function factor(context){
-  var name = context.event.text;
-  operationProd(context,("FACT"+name),("FACT"+name)); 
+  var operation = "factor";
+  var len = operation.length + 2;
+  var equation = (context.event.text).slice(len);
+  operationProd(context,operation,equation); 
 }
 
 
