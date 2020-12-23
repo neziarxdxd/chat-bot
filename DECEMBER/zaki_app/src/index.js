@@ -29,6 +29,28 @@ async function getBlock(context) {
   }
 }
 
+async function operationProd(context,operation,equation){
+    await context.sendText(operation+" <:> "+equation);
+
+}
+
+async function factor(context){
+  var name = context.event.text;
+  operationProd(context,("FACT"+name),("FACT"+name));
+  
+}
+
+async function zeroes(context){
+  var name = context.event.text;  
+  operationProd(context,("ZERO"+name),("ZERO"+name));
+}
+
 module.exports = async function App(context) {
-  return getBlock(context);
+  return router(
+    [
+      text("test-z",zeroes),
+      text("test-f",factor),
+    ]
+
+  );
 };
