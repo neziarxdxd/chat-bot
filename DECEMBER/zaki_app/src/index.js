@@ -23,9 +23,27 @@ async function testProd(context){
 async function testMore(context){
   var parseString = context.event.text; 
   var splittedString = parseString.split(" ")
-  var command = splittedString[0]
+  var command = splittedString[0].substring(1,)
   var equation = splittedString[1]
+  await context.sendText("command: "+command)
   await context.sendText("equation: "+equation)
+
+  let jsonBlocks;  
+  
+  var encodedUrl = encodeURIComponent(equation);
+  try {
+    var response = await fetch(`https://newton.now.sh/api/v2/${command}/${encodedUrl}`);
+    jsonBlocks = await response.json();
+    // context.sendText(jsonBlocks.result)
+    await context.sendText(jsonBlocks.result)
+  }catch (e) {
+    // handle error
+    console.error(e)
+    
+  }
+
+
+
 }
 
 
