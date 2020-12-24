@@ -35,7 +35,7 @@ async function testMore(context){
     var response = await fetch(`https://newton.now.sh/api/v2/${command}/${encodedUrl}`);
     jsonBlocks = await response.json();
     // context.sendText(jsonBlocks.result)
-    await context.sendText(jsonBlocks.result)
+    await context.sendText(`result: ${jsonBlocks.result}`)
   }catch (e) {
     // handle error
     console.error(e)
