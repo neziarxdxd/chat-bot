@@ -52,7 +52,15 @@ module.exports = async function App(context) {
   return router(
     [
      
-      text(/^\/factor[]?\s+/,testMore),     
+      text(/^\/simplify[]?\s+/,testMore),  
+      text(/^\/factor[]?\s+/,testMore),  
+      text(/^\/derive[]?\s+/,testMore),  
+      text(/^\/integrate[]?\s+/,testMore),  
+      text(/^\/zeroes[]?\s+/,testMore),  
+      text(/^\/tangent[]?\s+/,testMore),  
+      text(/^\/area[]?\s+/,testMore),  
+      text(/^\/cos[]?\s+/,testMore),
+      text(/^\/sin[]?\s+/,testMore)     
       
     ]
 
