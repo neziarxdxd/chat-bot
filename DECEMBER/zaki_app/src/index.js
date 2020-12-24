@@ -46,6 +46,10 @@ async function testMore(context){
 
 }
 
+async function hi(context){
+  await context.sendText("TESTING")
+}
+
 
 
 module.exports = async function App(context) {
@@ -60,7 +64,10 @@ module.exports = async function App(context) {
       text(/^\/tangent[]?\s+/,testMore),  
       text(/^\/area[]?\s+/,testMore),  
       text(/^\/cos[]?\s+/,testMore),
-      text(/^\/sin[]?\s+/,testMore)     
+      text(/^\/sin[]?\s+/,testMore), 
+      text(/^\/hello[]?\s+/,hi), 
+      text("hello",hi) 
+         
       
     ]
 
