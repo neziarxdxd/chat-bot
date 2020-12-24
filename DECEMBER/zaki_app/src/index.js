@@ -1,33 +1,31 @@
 const { router, route,text } = require('bottender/router');
 const fetch = require('node-fetch');
 
-async function operationProd(context,operation,equat){
-  let jsonBlocks;    
-  var encodedUrl = encodeURIComponent(equat);
-  try {
-    var response = await fetch(`https://newton.now.sh/api/v2/${operation}/${encodedUrl}`);
-    jsonBlocks = await response.json();
-    context.sendText(jsonBlocks.result)
-  }catch (e) {
-    // handle error
-    console.error(e)
-  }
-}
 //delete immediately
 
 async function testProd(context){
   let jsonBlocks;
-  var equat = "x^2-100";
+  var equat = context.event.text;
   var operation="factor";
   var encodedUrl = encodeURIComponent(equat);
   try {
     var response = await fetch(`https://newton.now.sh/api/v2/${operation}/${encodedUrl}`);
     jsonBlocks = await response.json();
-    context.sendText(jsonBlocks.result)
+    // context.sendText(jsonBlocks.result)
+    console.log("test: "+equat)
   }catch (e) {
     // handle error
     console.error(e)
+    
   }
+}
+
+async function testMore(context){
+  var parseString = context.event.text; 
+  var splittedString = parseString.split(" ")
+  var command = splittedString[0]
+  var equation = splittedString[1]
+  await context.sendText("equation: "+equation)
 }
 
 
@@ -35,7 +33,8 @@ async function testProd(context){
 module.exports = async function App(context) {
   return router(
     [
-      text([/^\/factor/,],factor),
+     
+      text(/^\/factor[]?\s+/,testMore),     
       
     ]
 

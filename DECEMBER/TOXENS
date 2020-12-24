@@ -41,3 +41,22 @@ function operationCompute(context){
 
 operationCompute("/factorial x^2- 100")
 **/
+
+
+
+async function operationProd(context,operation,equat){
+  let jsonBlocks;    
+  var encodedUrl = encodeURIComponent(equat);
+  try {
+    var response = await fetch(`https://newton.now.sh/api/v2/${operation}/${encodedUrl}`);
+    jsonBlocks = await response.json();
+    context.sendText(jsonBlocks.result)
+  }catch (e) {
+    // handle error
+    console.error(e)
+  }
+}
+
+
+FOR REGEX
+^(/factorial[]?\s+\s*)
