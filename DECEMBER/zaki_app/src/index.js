@@ -43,7 +43,7 @@ async function sendHelp(context){
 
 
 module.exports = async function App(context) {
-  // list of mathematics commnands
+
   return router(
     [     
       text(/^\/simplify[]?\s+/,doSolveThis),  
