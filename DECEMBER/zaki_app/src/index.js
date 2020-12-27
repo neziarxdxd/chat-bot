@@ -25,7 +25,7 @@ async function doSolveThis(context){
   var encodedUrl = encodeURIComponent(equation)
   
   try {
-    // fetch 
+    // fetch dsds
     var response = await fetch(`https://newton.now.sh/api/v2/${command}/${encodedUrl}`)
     var jsonBlocks = await response.json()
     await context.sendText(`result: ${jsonBlocks.result}`)
