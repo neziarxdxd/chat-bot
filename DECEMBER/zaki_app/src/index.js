@@ -35,7 +35,7 @@ async function doSolveThis(context){
   }
  
 }
-
+//TODO: fdfdfd
 async function sendHelp(context){
   await context.sendText("ANG GANDA MO!!!")
   //await context.sendText("Hi choose appropriate commands")
