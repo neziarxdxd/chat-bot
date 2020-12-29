@@ -35,10 +35,10 @@ async function doSolveThis(context){
   }
  
 }
-//TODO: fdfdfd
+
 async function sendHelp(context){
-  await context.sendText("ANG GANDA MO!!!")
-  //await context.sendText("Hi choose appropriate commands")
+  await context.sendText("Hi kindly choose the some  commands ")
+ 
 }
 
 
@@ -55,7 +55,7 @@ module.exports = async function App(context) {
       text(/^\/area[]?\s+/,doSolveThis),  
       text(/^\/cos[]?\s+/,doSolveThis),
       text(/^\/sin[]?\s+/,doSolveThis),
-      text(/^\/log[]?\s+/,doSolveThis),
+      text(/^\/log[]?\s+/,doSolveThis),    
       
       route('*',sendHelp)
     ]
