@@ -37,8 +37,34 @@ async function doSolveThis(context){
 }
 
 async function sendHelp(context){
-  await context.sendText("Hi kindly choose the some  commands ")
+  await context.sendText("Hi kindly choose the some  commands ") 
+}
+
+async function wikiPediaSend(context){
+  var parseString = context.event.text
+
+  // this will split the string by space 
+  var splittedString = parseString.split(" ") 
+
+  // this get the whole equation 
+  var eq = splittedString.slice(1, splittedString.length )  
+  var searchWord= eq.join(" ");
+
+  try {
+    // fetch dsds
+    var response = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&origin=*&formatversion=2&exintro&explaintext&redirects=1&titles=${searchWord}`)
+    var jsonBlocks = await response.json()
+    console.log(jsonBlocks["query"]["pages"][0]["extract"])
+  }  
+  catch (e) {    
+    console.error(e)    
+  }
+
+
  
+  
+
+
 }
 
 
@@ -55,7 +81,8 @@ module.exports = async function App(context) {
       text(/^\/area[]?\s+/,doSolveThis),  
       text(/^\/cos[]?\s+/,doSolveThis),
       text(/^\/sin[]?\s+/,doSolveThis),
-      text(/^\/log[]?\s+/,doSolveThis),    
+      text(/^\/log[]?\s+/,doSolveThis),  
+      text(/^\/wiki[]?\s+/,wikiPediaSend),  
       
       route('*',sendHelp)
     ]
