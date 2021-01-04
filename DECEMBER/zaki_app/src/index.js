@@ -54,7 +54,9 @@ async function wikiPediaSend(context){
     // fetch dsds
     var response = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&origin=*&formatversion=2&exintro&explaintext&redirects=1&titles=${searchWord}`)
     var jsonBlocks = await response.json()
-    console.log(jsonBlocks["query"]["pages"][0]["extract"])
+    var summaryText = jsonBlocks["query"]["pages"][0]["extract"]
+    var firstParagraph = summaryText.split("\n")
+    console.log(firstParagraph[0])
   }  
   catch (e) {    
     console.error(e)    
