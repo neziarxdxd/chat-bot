@@ -62,12 +62,6 @@ async function wikiPediaSend(context){
   catch (e) {    
     console.error(e)    
   }
-
-
- 
-  
-
-
 }
 
 
