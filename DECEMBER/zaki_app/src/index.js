@@ -76,10 +76,10 @@ async function dictionarySend(context){
 
   try {
     // fetch dsds
-    var response = await fetch(`${searchWord}`)
-    var jsonBlocks = await response.json()
-    var summaryText =" GOES HERE RESULT "
-    console.log(summaryText)
+    var response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
+    var jsonBlocks = await response.json();
+     var temporaryData = jsonBlocks[0]["meanings"]    
+    console.log(temporaryData[0]["definitions"][0]["definition"])
   }  
   catch (e) {    
     console.error(e)    
