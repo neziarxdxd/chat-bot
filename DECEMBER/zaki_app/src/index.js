@@ -64,6 +64,28 @@ async function wikiPediaSend(context){
   }
 }
 
+async function dictionarySend(context){
+  var parseString = context.event.text
+
+  // this will split the string by space 
+  var splittedString = parseString.split(" ") 
+
+  // this get the whole equation 
+  var eq = splittedString.slice(1, splittedString.length )  
+  var searchWord= eq.join(" ");
+
+  try {
+    // fetch dsds
+    var response = await fetch(`${searchWord}`)
+    var jsonBlocks = await response.json()
+    var summaryText =" GOES HERE RESULT "
+    console.log(summaryText)
+  }  
+  catch (e) {    
+    console.error(e)    
+  }
+}
+
 
 module.exports = async function App(context) {
 
@@ -80,6 +102,7 @@ module.exports = async function App(context) {
       text(/^\/sin[]?\s+/,doSolveThis),
       text(/^\/log[]?\s+/,doSolveThis),  
       text(/^\/wiki[]?\s+/,wikiPediaSend),  
+      text(/^\/word[]?\s+/,dictionarySend),  
       
       route('*',sendHelp)
     ]
