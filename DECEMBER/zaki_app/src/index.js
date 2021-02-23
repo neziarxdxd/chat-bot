@@ -57,7 +57,7 @@ async function wikiPediaSend(context){
     var summaryText = jsonBlocks["query"]["pages"][0]["extract"]
     //test
     var firstParagraph = summaryText.split("\n")
-    console.log(firstParagraph[0])
+    await context.sendText(firstParagraph[0])
   }  
   catch (e) {    
     console.error(e)    
@@ -79,7 +79,7 @@ async function dictionarySend(context){
     var response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
     var jsonBlocks = await response.json();
      var temporaryData = jsonBlocks[0]["meanings"]    
-    console.log(temporaryData[0]["definitions"][0]["definition"])
+    await context.sendText(temporaryData[0]["definitions"][0]["definition"])
   }  
   catch (e) {    
     console.error(e)    
