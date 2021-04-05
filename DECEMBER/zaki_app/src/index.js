@@ -88,7 +88,6 @@ async function dictionarySend(context){
 
 
 module.exports = async function App(context) {
-
   return router(
     [     
       text(/^\/simplify[]?\s+/,doSolveThis),  
