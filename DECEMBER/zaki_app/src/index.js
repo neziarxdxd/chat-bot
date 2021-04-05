@@ -51,7 +51,7 @@ async function wikiPediaSend(context){
   var searchWord= eq.join(" ");
 
   try {
-    // fetch dsds
+    // fetch the data
     var response = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&origin=*&formatversion=2&exintro&explaintext&redirects=1&titles=${searchWord}`)
     var jsonBlocks = await response.json()
     var summaryText = jsonBlocks["query"]["pages"][0]["extract"]
@@ -102,7 +102,6 @@ module.exports = async function App(context) {
       text(/^\/log[]?\s+/,doSolveThis),  
       text(/^\/wiki[]?\s+/,wikiPediaSend),  
       text(/^\/word[]?\s+/,dictionarySend),  
-      
       route('*',sendHelp)
     ]
 
